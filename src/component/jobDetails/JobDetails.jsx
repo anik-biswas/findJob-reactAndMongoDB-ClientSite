@@ -5,12 +5,13 @@ import { AuthContext } from '../../firebase/AuthProvider';
 const JobDetails = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const job = useLoaderData();
     const { user } = useContext(AuthContext);
-
     const email = user.email;
-    const {_id, name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description ,comName,comLogo} = job;
-    const uName= userName.split('@')[0];
+
+    const [job, setJob] = useState(useLoaderData());
+    const { _id, name, salary, category, userName, deadline, postDate, jobBanner, appNumber, description, comName, comLogo } = job;
+
+    const uName = userName.split('@')[0];
     const [modelShow, setModelShow] = useState(false);
 
     const openModal = () => {
@@ -22,52 +23,51 @@ const JobDetails = () => {
     };
 
     const handleApply = () => {
-        // Check if the deadline has passed
         const currentDate = new Date();
         if (currentDate > new Date(deadline)) {
             console.log("Deadline has passed. You can't apply.");
-            // You can show a message or toast to inform the user.
         } else if (email === userName) {
-            console.log("User can not apply to their own job.");
-            // You can show a message or toast to inform the user.
+            console.log("User cannot apply to their own job.");
         } else {
             openModal();
         }
     };
 
-    const handleJobApply = e =>{
+    const updateAppNumber = () => {
+        // Update appNumber in the state
+        setJob((prevJob) => ({
+            ...prevJob,
+            appNumber: parseInt(prevJob.appNumber, 10) + 1,
+        }));
+    };
+
+    const handleJobApply = (e) => {
         e.preventDefault();
         const form = e.target;
-    
-            const uName = form.uName.value;
-            const userName = form.userName.value;
-            const cvLink = form.cvLink.value;
-           
-            const newApply = {_id, name,uName, userName,cvLink};
-    
-            console.log(newApply);
-            fetch('http://localhost:5000/apply',{
-                method: 'POST',
-                headers : {
-                    'content-type':'application/json'
-                },
-                body:JSON.stringify(newApply)
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                console.log(data);
-                if(data.insertedId){
-                    // Swal.fire({
-                    //     title: 'Success!',
-                    //     text: 'Brand Added Successfully',
-                    //     icon: 'success',
-                    //     confirmButtonText: 'Ok'
-                    //   })
-                }
-               // navigate(location?.state ? location.state : '/');
-            })
-    
-     }
+        const uName = form.uName.value;
+        const userName = form.userName.value;
+        const cvLink = form.cvLink.value;
+
+        const newApply = { _id, name, uName, userName, cvLink };
+
+        console.log(newApply);
+        fetch('http://localhost:5000/apply', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(newApply),
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            if (data.success) {
+                
+                closeModal();
+                updateAppNumber();
+            }
+        });
+    };
 
     return (
         <div className='items-center mx-16 md:mx-24 lg:mx-32 my-8'>
