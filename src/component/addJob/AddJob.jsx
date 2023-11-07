@@ -1,26 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/AuthProvider';
+import DatePicker from 'react-datepicker'; // Add this import
+import 'react-datepicker/dist/react-datepicker.css'; 
 
 const AddJob = () => {
-    const{user}= useContext(AuthContext);
+  
+   // console.log(user)
   const location= useLocation();
   const navigate= useNavigate();
   const [categories,setCategories] = useState([]);
-  const[users,setUser] = useState([]);
-  useEffect ( () => {
-    fetch('http://localhost:5000/user')
-    .then (res => res.json())
-    .then(data =>setUser(data))
-    
-},[])
-console.log(users)
+  const{user}= useContext(AuthContext);
+
+  const email =user.email;
+  const [postDate, setPostDate] = useState(null);
+  const [deadline, setDeadline] = useState(null);
   useEffect ( () => {
       fetch('http://localhost:5000/category')
       .then (res => res.json())
       .then(data =>setCategories(data))
       
   },[])
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
  
     return (
       <div>
@@ -114,7 +121,7 @@ console.log(users)
                   type="text"
                   name="userName"
                   placeholder=""
-                  
+                  defaultValue={email}
                   className="input input-bordered w-full"
                   required
                 />
@@ -141,13 +148,13 @@ console.log(users)
                 <span className="label-text">Post Date</span>
               </label>
               <label className="input-group">
-                <input
-                  type="text"
-                  name="userName"
-                  placeholder=""
-                  
-                  className="input input-bordered w-full"
-                  required
+              <input
+                type="text"
+                name="postDate"
+                value={getCurrentDate()}
+                className="input input-bordered w-full"
+                readOnly // Prevent user input
+                required
                 />
               </label>
             </div>
@@ -156,12 +163,13 @@ console.log(users)
                 <span className="label-text">Deadline</span>
               </label>
               <label className="input-group">
-                <input
-                  type="text"
-                  name="AppNumber"
-                  placeholder=""
-                  className="input input-bordered w-full"
-                  required
+              <DatePicker
+                selected={deadline} // Provide a date value (e.g., from state)
+                onChange={(date) => setDeadline(date)} // Handle date changes
+                placeholderText="Select a date"
+                name="deadline"
+                className="input input-bordered w-full"
+                required
                 />
               </label>
             </div>
