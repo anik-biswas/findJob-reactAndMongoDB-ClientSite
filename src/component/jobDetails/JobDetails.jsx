@@ -6,12 +6,12 @@ const JobDetails = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
-    const email = user.email;
+    const email = user?.email;
 
     const [job, setJob] = useState(useLoaderData());
     const { _id, name, salary, category, userName, deadline, postDate, jobBanner, appNumber, description, comName, comLogo } = job;
 
-    const uName = email.split('@')[0];
+    const uName = email?.split('@')[0];
     const [modelShow, setModelShow] = useState(false);
 
     const openModal = () => {

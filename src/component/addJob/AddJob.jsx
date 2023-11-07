@@ -12,7 +12,7 @@ const AddJob = () => {
   const [categories,setCategories] = useState([]);
   const{user}= useContext(AuthContext);
 
-  const email =user.email;
+  const email =user?.email;
   const [postDate, setPostDate] = useState(null);
   const [deadline, setDeadline] = useState(null);
   useEffect ( () => {
