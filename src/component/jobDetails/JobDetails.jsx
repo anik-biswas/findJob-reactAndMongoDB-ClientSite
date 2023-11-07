@@ -11,7 +11,7 @@ const JobDetails = () => {
     const [job, setJob] = useState(useLoaderData());
     const { _id, name, salary, category, userName, deadline, postDate, jobBanner, appNumber, description, comName, comLogo } = job;
 
-    const uName = userName.split('@')[0];
+    const uName = email.split('@')[0];
     const [modelShow, setModelShow] = useState(false);
 
     const openModal = () => {
@@ -48,7 +48,7 @@ const JobDetails = () => {
         const userName = form.userName.value;
         const cvLink = form.cvLink.value;
 
-        const newApply = { _id, name, uName, userName, cvLink };
+        const newApply = { _id, name,salary, category,jobBanner, uName, userName, cvLink };
 
         console.log(newApply);
         fetch('http://localhost:5000/apply', {
@@ -127,7 +127,7 @@ const JobDetails = () => {
                                                     type="text"
                                                     name="userName"
                                                     placeholder=""
-                                                    defaultValue={userName}
+                                                    defaultValue={email}
                                                     className="input input-bordered w-full"
                                                     required
                                                 />
