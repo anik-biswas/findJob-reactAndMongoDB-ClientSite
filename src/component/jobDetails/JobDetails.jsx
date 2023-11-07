@@ -43,7 +43,7 @@ const JobDetails = () => {
             const userName = form.userName.value;
             const cvLink = form.cvLink.value;
            
-            const newApply = {uName, userName,cvLink};
+            const newApply = {_id, name,uName, userName,cvLink};
     
             console.log(newApply);
             fetch('http://localhost:5000/apply',{
@@ -148,7 +148,7 @@ const JobDetails = () => {
                                             </label>
                                         </div>
                                         <div className='mt-5 justify-center items-center'>
-                                            <button className="btn" onClick={closeModal}>Submit</button>
+                                            <button className="btn">Submit</button>
                                         </div>
                                     </form>
                                 </div>
