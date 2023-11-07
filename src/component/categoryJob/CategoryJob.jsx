@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryJob = ({job}) => {
-    const { name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description ,comName,comLogo} = job;
+    const {_id, name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description ,comName,comLogo} = job;
     const uName= userName.split('@')[0];
     console.log(job)
     return (
@@ -20,7 +21,7 @@ const CategoryJob = ({job}) => {
                 <p>Apply: {appNumber}</p>
                 </div>
                 <div className="card-actions justify-end">
-                <button className="btn btn-primary">Details</button>
+                <Link to={`/jobDetails/${_id}`}><button className="btn btn-primary">Details</button></Link>
                 </div>
                 </div>
             </div>
