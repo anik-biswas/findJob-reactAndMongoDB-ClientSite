@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card';
+import CategoryJob from '../categoryJob/CategoryJob';
 
 const Category = () => {
     const [categories,setCategories] = useState([]);
@@ -23,6 +24,9 @@ const Category = () => {
     const handleCategoryClick = (name) => {
         setSelectedCategory(name);
       };
+      const handleAllJobsClick = () => {
+        setSelectedCategory(null);
+      };
     return (
         <div>
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-5 gap-x-2 justify-items-center  my-10">
@@ -31,13 +35,16 @@ const Category = () => {
             
             categories.map(category => <Card category={category} key={category._id} onCategoryClick={handleCategoryClick}></Card>)
         }
-         <h2 className="btn btn-success">All Jobs</h2>
+         <h2 className="btn btn-success" onClick={handleAllJobsClick}>All Jobs</h2>
+         </div>
+         <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 gap-y-5 gap-x-2 justify-items-center  my-10">
             {filteredJobs.map((job) => (
-                <div key={job._id}>{job.name}</div>
+                <CategoryJob job={job} key={job._id} ></CategoryJob>
                 //console.log(job)
             ))}
+            </div>
     </div>
-        </div>
+        
     );
 };
 

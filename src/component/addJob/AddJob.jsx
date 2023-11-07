@@ -44,8 +44,10 @@ const AddJob = () => {
     const postDate = form.postDate.value;
     const jobBanner = form.jobBanner.value;
     const appNumber = form.appNumber.value;
+    const comName = form.comName.value;
+    const comLogo = form.comLogo.value;
 
-    const newJob = { name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description }
+    const newJob = { name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description,comName,comLogo }
 
     console.log(newJob);
 
@@ -183,6 +185,37 @@ const AddJob = () => {
                   name="appNumber"
                   defaultValue="0"
                   placeholder=""
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </div>
+          </div>
+          <div className="md:flex mb-4 lg:mb-8">
+            <div className="form-control md:w-full lg:w-1/2">
+              <label className="label">
+                <span className="label-text">Company Name</span>
+              </label>
+              <label className="input-group">
+                <input
+                  type="text"
+                  name="comName"
+                  placeholder="Company Name"
+                  
+                  className="input input-bordered w-full"
+                  required
+                />
+              </label>
+            </div>
+            <div className="form-control md:w-full lg:w-1/2 ml-0 lg:ml-4 mt-4 lg:mt-0">
+              <label className="label">
+                <span className="label-text">Company Logo</span>
+              </label>
+              <label className="input-group">
+                <input
+                  type="text"
+                  name="comLogo"
+                  placeholder="Company Logo"
                   className="input input-bordered w-full"
                   required
                 />
