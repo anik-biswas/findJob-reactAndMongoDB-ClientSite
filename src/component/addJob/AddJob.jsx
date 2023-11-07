@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../firebase/AuthProvider';
 
 const AddJob = () => {
+    const{user}= useContext(AuthContext);
   const location= useLocation();
   const navigate= useNavigate();
   const [categories,setCategories] = useState([]);
+  const[users,setUser] = useState([]);
+  useEffect ( () => {
+    fetch('http://localhost:5000/user')
+    .then (res => res.json())
+    .then(data =>setUser(data))
+    
+},[])
+console.log(users)
   useEffect ( () => {
       fetch('http://localhost:5000/category')
       .then (res => res.json())
       .then(data =>setCategories(data))
       
   },[])
-  console.log(categories)
+ 
     return (
       <div>
       <div className="bg-[#CBE4E9] p-4 lg:p-24">
