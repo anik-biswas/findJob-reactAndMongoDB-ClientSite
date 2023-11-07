@@ -15,7 +15,7 @@ const Navbar = () => {
           .then(result=>{
             
             console.log("logout")
-            toast.success('Logout successful!'); 
+          // toast.success('Logout successful!'); 
             navigate(location?.state ? location.state : '/');
             
         })

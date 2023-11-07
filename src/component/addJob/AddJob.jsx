@@ -28,7 +28,53 @@ const AddJob = () => {
     const day = currentDate.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
- 
+
+  const handleAddJob = event => {
+    event.preventDefault();
+
+    const form = event.target;
+    const selectElement = document.getElementById("categorySelect");
+    
+    const name = form.name.value;
+    const category = selectElement.value;
+    const salary = form.salary.value;
+    const userName = form.userName.value;
+    const deadline = form.deadline.value;
+    const description = form.description.value;
+    const postDate = form.postDate.value;
+    const jobBanner = form.jobBanner.value;
+    const appNumber = form.appNumber.value;
+
+    const newJob = { name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description }
+
+    console.log(newJob);
+
+    fetch('http://localhost:5000/job', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newJob)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data);
+    
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+            if(data.insertedId){
+                // Swal.fire({
+                //     title: 'Success!',
+                //     text: 'Product Added Successfully',
+                //     icon: 'success',
+                //     confirmButtonText: 'Ok'
+                //   })
+            }
+            navigate(location?.state ? location.state : '/');
+      })
+}
+
     return (
       <div>
       <div className="bg-[#CBE4E9] p-4 lg:p-24">
@@ -46,7 +92,7 @@ const AddJob = () => {
             </Link>
           </p>
         </div>
-        <form >
+        <form onSubmit={handleAddJob}>
           <div className="md:flex mb-4 lg:mb-8">
             <div className="form-control md:w-full lg:w-1/2">
               <label className="label">
@@ -134,7 +180,8 @@ const AddJob = () => {
               <label className="input-group">
                 <input
                   type="text"
-                  name="AppNumber"
+                  name="appNumber"
+                  defaultValue="0"
                   placeholder=""
                   className="input input-bordered w-full"
                   required
@@ -153,7 +200,7 @@ const AddJob = () => {
                 name="postDate"
                 value={getCurrentDate()}
                 className="input input-bordered w-full"
-                readOnly // Prevent user input
+                readOnly 
                 required
                 />
               </label>
