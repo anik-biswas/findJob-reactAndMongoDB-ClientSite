@@ -31,11 +31,13 @@ import MyJob from './component/myJob/MyJob.jsx'
 import UpdateJob from './component/updateJob/UpdateJob.jsx'
 import Blog from './component/blogs/Blog.jsx'
 import About from './component/about/About.jsx'
+import ErrorPage from './component/errorPage/ErrorPage.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement : <ErrorPage></ErrorPage> ,
     children : [
       {
         path: "/",
