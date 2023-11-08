@@ -86,7 +86,7 @@ const Navbar = () => {
                     {user ? authenticatedLinks : null}
                     </ul>
                 </div>
-                <div className="navbar-end mx-5 mt-5">
+                <div className="navbar-end mx-5 mt-0 md:mt-5">
                 
                      <div>
                      
