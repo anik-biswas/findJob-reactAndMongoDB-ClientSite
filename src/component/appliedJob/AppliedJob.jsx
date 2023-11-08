@@ -63,8 +63,8 @@ const AppliedJob = () => {
 
                         </select>
                     </div>
-                  
-                    <table className="table">
+                  <div className='overflow-x-auto justify-center items-center text-center px-5 md:px-10 lg:px-20'>
+                  <table className="table">
                         {/* Table header */}
                         <thead>
                             <tr>
@@ -102,6 +102,8 @@ const AppliedJob = () => {
                             ))}
                         </tbody>
                     </table>
+                  </div>
+                    
 
                 </div>
             </div>

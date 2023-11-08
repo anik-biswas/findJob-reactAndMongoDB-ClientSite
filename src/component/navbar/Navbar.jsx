@@ -24,7 +24,7 @@ const Navbar = () => {
 
                 const  links = <>
                 <li className="mx-3 text-base text-red-600 font-medium hidden md:block lg:block" ><NavLink to="/"  >Home</NavLink></li>
-                <li className="mr-3  text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/AddMobile">All Jobs</NavLink></li>
+                <li className="mr-3  text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/allJob">All Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/appliedJob">Applied Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/addJob">Add Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/user">My Jobs</NavLink></li>

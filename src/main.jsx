@@ -26,6 +26,7 @@ import AddCategory from './component/addCategory/AddCategory.jsx'
 import AddJob from './component/addJob/AddJob.jsx'
 import JobDetails from './component/jobDetails/JobDetails.jsx'
 import AppliedJob from './component/appliedJob/AppliedJob.jsx'
+import AllJob from './component/allJob/AllJob.jsx'
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,12 @@ const router = createBrowserRouter([
       {
         path: "appliedJob",
         element: <AppliedJob></AppliedJob>,
-        loader : () => fetch(`http://localhost:5000/apply`),
+       //loader : () => fetch(`http://localhost:5000/apply`),
+      },
+      {
+        path: "allJob",
+        element: <AllJob></AllJob>,
+       
       },
       {
         path: "JOBDetails/:id",

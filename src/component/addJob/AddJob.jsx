@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/AuthProvider';
 import DatePicker from 'react-datepicker'; // Add this import
 import 'react-datepicker/dist/react-datepicker.css'; 
+import Swal from 'sweetalert2';
 
 const AddJob = () => {
   
@@ -66,12 +67,12 @@ const AddJob = () => {
     //     .then(data => {
     //         console.log(data);
             if(data.insertedId){
-                // Swal.fire({
-                //     title: 'Success!',
-                //     text: 'Product Added Successfully',
-                //     icon: 'success',
-                //     confirmButtonText: 'Ok'
-                //   })
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Job Added Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  })
             }
             navigate(location?.state ? location.state : '/');
       })
