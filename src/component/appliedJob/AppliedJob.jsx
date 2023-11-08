@@ -24,7 +24,7 @@ const AppliedJob = () => {
                 setApplies(data);
                 filterApplied(data, email, selectedCategory);
             });
-    }, [email, selectedCategory]); // Include selectedCategory as a dependency
+    }, [email, selectedCategory]); 
 
     const filterApplied = (applies, email, category) => {
         const filtered = applies.filter((apply) => {

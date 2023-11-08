@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/AuthProvider';
-import Swal from 'sweetalert2';
 
 const JobDetails = () => {
     const location = useLocation();
@@ -14,7 +13,7 @@ const JobDetails = () => {
 
     const uName = email?.split('@')[0];
     const [modelShow, setModelShow] = useState(false);
-
+    const jobId = _id;
     const openModal = () => {
         setModelShow(true);
     };
@@ -49,30 +48,24 @@ const JobDetails = () => {
         const userName = form.userName.value;
         const cvLink = form.cvLink.value;
 
-        const newApply = { _id, name,salary, category,jobBanner, uName, userName, cvLink };
+        const newApply = {jobId,  name,salary, category,jobBanner, uName, userName, cvLink };
 
         console.log(newApply);
         fetch('http://localhost:5000/apply', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(newApply)
-    })
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(newApply),
+        })
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
-            if (data.insertedId) {
+            if (data.success) {
                 
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Product Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  })
-
+                closeModal();
+                updateAppNumber();
             }
-            navigate(location?.state ? location.state : '/');
         });
     };
 
