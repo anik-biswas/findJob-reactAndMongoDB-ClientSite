@@ -52,7 +52,7 @@ const JobDetails = () => {
         const newApply = {jobId,  name,salary, category,jobBanner, uName, userName, cvLink };
 
         console.log(newApply);
-        fetch('https://job-server-mu.vercel.app/apply', {
+        fetch('https://job-server-topaz.vercel.app/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -73,7 +73,7 @@ const JobDetails = () => {
     return (
         <div className='items-center mx-16 md:mx-24 lg:mx-32 my-8'>
             <div className="card lg:card-side bg-base-100 shadow-xl">
-                <figure className='w-full lg:w-1/2'><img src={jobBanner} alt="Album" /></figure>
+                <img className=' w-full md:w-1/2 ' src={jobBanner} alt="Album" />
                 <div className="card-body">
                     <div className='flex items-center justify-center space-x-5'>
                         <div className="avatar">

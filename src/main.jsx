@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       {
         path: "appliedJob",
         element: <PrivateRoute><AppliedJob></AppliedJob></PrivateRoute>,
-       //loader : () => fetch(`https://job-server-mu.vercel.app/apply`),
+       //loader : () => fetch(`https://job-server-topaz.vercel.app/apply`),
       },
       {
         path: "allJob",
@@ -90,12 +90,12 @@ const router = createBrowserRouter([
       {
         path: "jobDetails/:id",
         element:<PrivateRoute><JobDetails></JobDetails></PrivateRoute> ,
-        loader : ({params}) => fetch(`https://job-server-mu.vercel.app/job/${params.id}`),
+        loader : ({params}) => fetch(`https://job-server-topaz.vercel.app/job/${params.id}`),
       },
       {
         path: "updateJob/:id",
         element:<PrivateRoute><UpdateJob></UpdateJob> </PrivateRoute>,
-        loader : ({params}) => fetch(`https://job-server-mu.vercel.app/job/${params.id}`),
+        loader : ({params}) => fetch(`https://job-server-topaz.vercel.app/job/${params.id}`),
       },
 
     ]

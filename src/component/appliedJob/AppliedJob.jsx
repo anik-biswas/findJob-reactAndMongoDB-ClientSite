@@ -13,7 +13,7 @@ const AppliedJob = () => {
     const [selectedCategory, setSelectedCategory] = useState('All'); // Initialize with 'All' as the default category
 
     useEffect(() => {
-        fetch('https://job-server-mu.vercel.app/category')
+        fetch('https://job-server-topaz.vercel.app/category')
             .then(res => res.json())
             .then(data => setCategories(data));
     }, []);
@@ -27,7 +27,7 @@ const AppliedJob = () => {
     const [filterDelete, setFilterAfterDelete] = useState([]);
 
     const fetchAppliedJobs = () => {
-        fetch('https://job-server-mu.vercel.app/apply')
+        fetch('https://job-server-topaz.vercel.app/apply')
             .then((res) => res.json())
             .then((data) => {
                 setApplies(data);
@@ -57,7 +57,7 @@ const AppliedJob = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://job-server-mu.vercel.app/apply/${_id}`, {
+                fetch(`https://job-server-topaz.vercel.app/apply/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

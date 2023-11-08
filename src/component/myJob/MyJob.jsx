@@ -13,7 +13,7 @@ const MyJob = () => {
     const [filterDelete, setFilterAfterDelete] = useState([]);
 
     const fetchJobData = () => {
-        fetch('https://job-server-mu.vercel.app/job')
+        fetch('https://job-server-topaz.vercel.app/job')
             .then((res) => res.json())
             .then((data) => {
                 setJobs(data);
@@ -43,7 +43,7 @@ const MyJob = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://job-server-mu.vercel.app/job/${_id}`, {
+                fetch(`https://job-server-topaz.vercel.app/job/${_id}`, {
                     method: 'DELETE'
                 })
                     .then((res) => res.json())

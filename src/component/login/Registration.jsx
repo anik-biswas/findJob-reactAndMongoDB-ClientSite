@@ -35,7 +35,7 @@ const Registration = () => {
                 const createdAt = result.user?.metadata?.creationTime;
                 const user = { email,name,image, createdAt: createdAt };
                
-                fetch('https://job-server-mu.vercel.app/user', {
+                fetch('https://job-server-topaz.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

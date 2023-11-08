@@ -7,14 +7,14 @@ const Category = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [jobs,setJobs]= useState([])
     useEffect ( () => {
-        fetch('https://job-server-mu.vercel.app/job')
+        fetch('https://job-server-topaz.vercel.app/job')
         .then (res => res.json())
         .then(data =>setJobs(data))
         
     },[])
     console.log(jobs)
     useEffect ( () => {
-        fetch('https://job-server-mu.vercel.app/category')
+        fetch('https://job-server-topaz.vercel.app/category')
         .then (res => res.json())
         .then(data =>setCategories(data))
         

@@ -10,7 +10,7 @@ const UpdateJob = () => {
     const  { _id,name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description,comName,comLogo } = job ;
     const [categories,setCategories] = useState([]);
     useEffect ( () => {
-        fetch('https://job-server-mu.vercel.app/category')
+        fetch('https://job-server-topaz.vercel.app/category')
         .then (res => res.json())
         .then(data =>setCategories(data))
         
@@ -39,7 +39,7 @@ const UpdateJob = () => {
     
         console.log(updateJob);
     
-        fetch(`https://job-server-mu.vercel.app/job/${_id}`, {
+        fetch(`https://job-server-topaz.vercel.app/job/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

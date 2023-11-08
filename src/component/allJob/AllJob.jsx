@@ -7,7 +7,7 @@ const AllJob = () => {
     const [jobs,setJobs]= useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     useEffect ( () => {
-        fetch('https://job-server-mu.vercel.app/job')
+        fetch('https://job-server-topaz.vercel.app/job')
         .then (res => res.json())
         .then(data =>setJobs(data))
         

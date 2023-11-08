@@ -17,7 +17,7 @@ const AddJob = () => {
   const [postDate, setPostDate] = useState(null);
   const [deadline, setDeadline] = useState(null);
   useEffect ( () => {
-      fetch('https://job-server-mu.vercel.app/category')
+      fetch('https://job-server-topaz.vercel.app/category')
       .then (res => res.json())
       .then(data =>setCategories(data))
       
@@ -52,7 +52,7 @@ const AddJob = () => {
 
     console.log(newJob);
 
-    fetch('https://job-server-mu.vercel.app/job', {
+    fetch('https://job-server-topaz.vercel.app/job', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
