@@ -25,22 +25,42 @@ const Navbar = () => {
                 const  links = <>
                 <li className="mx-3 text-base text-red-600 font-medium hidden md:block lg:block" ><NavLink to="/"  >Home</NavLink></li>
                 <li className="mr-3  text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/allJob">All Jobs</NavLink></li>
+                 
+                {/* <div>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/appliedJob">Applied Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/addJob">Add Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/myJob">My Jobs</NavLink></li>
-                <li className=" text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/blog">Blogs</NavLink></li>
+                </div> */}
+                
+                <li className=" mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/blog">Blogs</NavLink></li>
                 <li className=" text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/about">About</NavLink></li>
                 {/* <li className="mr-5 text-lg font-medium hidden md:block lg:block"><ToggleTheme /></li> */}
             </>
+              const authenticatedLinks = (
+                <>
+                    <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block">
+                        <NavLink to="/appliedJob">Applied Jobs</NavLink>
+                    </li>
+                    <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block">
+                        <NavLink to="/addJob">Add Jobs</NavLink>
+                    </li>
+                    <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block">
+                        <NavLink to="/myJob">My Jobs</NavLink>
+                    </li>
+                </>
+            );
          const  linksTab = <>
                 <li className="mr-5 " ><NavLink to="/"  >Home</NavLink></li>
-                 <li className="mr-5 "><NavLink to="/a">All Jobs</NavLink></li>
-                 <li className="mr-5 "><NavLink to={`/b`}>Applied Jobs</NavLink></li>
-                 <li className="mr-5 "><NavLink to={`/c`}>Add Jobs</NavLink></li>
-                 <li className="mr-5 "><NavLink to={`/d`}>My Jobs</NavLink></li>
-                 <li className="mr-5 "><NavLink to="/e">Blogs</NavLink></li>
-                 <li className="mr-5 "><NavLink to="/e">About</NavLink></li>
+                 <li className="mr-5 "><NavLink to="/allJob">All Jobs</NavLink></li>
+                 <li className="mr-5 "><NavLink to="/blog">Blogs</NavLink></li>
+                 <li className="mr-5 "><NavLink to="/about">About</NavLink></li>
                  {/* <li className="mr-5 "><ToggleTheme /></li> */}
+             </>
+             const authLink = <>
+             
+                 <li className="mr-5 "><NavLink to={`/appliedJob`}>Applied Jobs</NavLink></li>
+                 <li className="mr-5 "><NavLink to={`/addJob`}>Add Jobs</NavLink></li>
+                 <li className="mr-5 "><NavLink to={`/myJob`}>My Jobs</NavLink></li>
              </>
     return (
         <div>
@@ -53,6 +73,7 @@ const Navbar = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                         
                         {linksTab}
+                        {user ? authLink : null}
 
                     </ul>
                     </div>
@@ -62,6 +83,7 @@ const Navbar = () => {
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                     {links}
+                    {user ? authenticatedLinks : null}
                     </ul>
                 </div>
                 <div className="navbar-end mx-5 mt-5">

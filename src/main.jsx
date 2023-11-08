@@ -32,6 +32,7 @@ import UpdateJob from './component/updateJob/UpdateJob.jsx'
 import Blog from './component/blogs/Blog.jsx'
 import About from './component/about/About.jsx'
 import ErrorPage from './component/errorPage/ErrorPage.jsx'
+import PrivateRoute from './component/PrivateRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,15 +56,15 @@ const router = createBrowserRouter([
 
       {
         path: "/addCategory",
-        element: <AddCategory></AddCategory>,
+        element: <PrivateRoute><AddCategory></AddCategory></PrivateRoute>,
       },
       {
         path: "/addJob",
-        element: <AddJob></AddJob>,
+        element: <PrivateRoute><AddJob></AddJob></PrivateRoute>,
       },
       {
         path: "appliedJob",
-        element: <AppliedJob></AppliedJob>,
+        element: <PrivateRoute><AppliedJob></AppliedJob></PrivateRoute>,
        //loader : () => fetch(`http://localhost:5000/apply`),
       },
       {
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
       },
       {
         path: "myJob",
-        element: <MyJob></MyJob>,
+        element: <PrivateRoute><MyJob></MyJob></PrivateRoute>,
        
       },
       {
@@ -88,12 +89,12 @@ const router = createBrowserRouter([
       },
       {
         path: "jobDetails/:id",
-        element:<JobDetails></JobDetails> ,
+        element:<PrivateRoute><JobDetails></JobDetails></PrivateRoute> ,
         loader : ({params}) => fetch(`http://localhost:5000/job/${params.id}`),
       },
       {
         path: "updateJob/:id",
-        element:<UpdateJob></UpdateJob> ,
+        element:<PrivateRoute><UpdateJob></UpdateJob> </PrivateRoute>,
         loader : ({params}) => fetch(`http://localhost:5000/job/${params.id}`),
       },
 
