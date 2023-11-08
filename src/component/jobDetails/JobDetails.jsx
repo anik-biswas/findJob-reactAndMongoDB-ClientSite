@@ -51,7 +51,7 @@ const JobDetails = () => {
         const newApply = {jobId,  name,salary, category,jobBanner, uName, userName, cvLink };
 
         console.log(newApply);
-        fetch('http://localhost:5000/apply', {
+        fetch('https://job-server-mu.vercel.app/apply', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

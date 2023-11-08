@@ -7,14 +7,14 @@ const Category = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [jobs,setJobs]= useState([])
     useEffect ( () => {
-        fetch('http://localhost:5000/job')
+        fetch('https://job-server-mu.vercel.app/job')
         .then (res => res.json())
         .then(data =>setJobs(data))
         
     },[])
     console.log(jobs)
     useEffect ( () => {
-        fetch('http://localhost:5000/category')
+        fetch('https://job-server-mu.vercel.app/category')
         .then (res => res.json())
         .then(data =>setCategories(data))
         
@@ -36,13 +36,13 @@ const Category = () => {
             categories.map(category => <Card category={category} key={category._id} onCategoryClick={handleCategoryClick}></Card>)
         }
         <motion.div
-  whileHover={{ scale: 1.2, rotate: 90 }}
-  whileTap={{
-    scale: 0.8,
-    rotate: -60,
-    borderRadius: "100%"
-  }}
->
+        whileHover={{ scale: 1.2, rotate: 90 }}
+        whileTap={{
+            scale: 0.8,
+            rotate: -60,
+            borderRadius: "100%"
+        }}
+        >
          <h2 className="btn btn-success" onClick={handleAllJobsClick}>All Jobs</h2>
          </motion.div>
          </div>

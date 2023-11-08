@@ -14,7 +14,7 @@ const AddCategory = () => {
         const newCategory = { name}
 
         console.log(newCategory);
-        fetch('http://localhost:5000/category',{
+        fetch('https://job-server-mu.vercel.app/category',{
             method: 'POST',
             headers : {
                 'content-type':'application/json'
