@@ -28,7 +28,7 @@ const Navbar = () => {
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/appliedJob">Applied Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/addJob">Add Jobs</NavLink></li>
                 <li className="mr-3 text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/myJob">My Jobs</NavLink></li>
-                <li className=" text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/user">Blogs</NavLink></li>
+                <li className=" text-base text-red-600 font-medium hidden md:block lg:block"><NavLink to="/blog">Blogs</NavLink></li>
                 {/* <li className="mr-5 text-lg font-medium hidden md:block lg:block"><ToggleTheme /></li> */}
             </>
          const  linksTab = <>

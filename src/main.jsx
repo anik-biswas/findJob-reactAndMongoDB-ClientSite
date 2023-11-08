@@ -29,6 +29,7 @@ import AppliedJob from './component/appliedJob/AppliedJob.jsx'
 import AllJob from './component/allJob/AllJob.jsx'
 import MyJob from './component/myJob/MyJob.jsx'
 import UpdateJob from './component/updateJob/UpdateJob.jsx'
+import Blog from './component/blogs/Blog.jsx'
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,11 @@ const router = createBrowserRouter([
       {
         path: "myJob",
         element: <MyJob></MyJob>,
+       
+      },
+      {
+        path: "blog",
+        element: <Blog></Blog>,
        
       },
       {
