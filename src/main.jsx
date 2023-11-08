@@ -28,6 +28,7 @@ import JobDetails from './component/jobDetails/JobDetails.jsx'
 import AppliedJob from './component/appliedJob/AppliedJob.jsx'
 import AllJob from './component/allJob/AllJob.jsx'
 import MyJob from './component/myJob/MyJob.jsx'
+import UpdateJob from './component/updateJob/UpdateJob.jsx'
 
 const router = createBrowserRouter([
   {
@@ -72,8 +73,13 @@ const router = createBrowserRouter([
        
       },
       {
-        path: "JOBDetails/:id",
+        path: "jobDetails/:id",
         element:<JobDetails></JobDetails> ,
+        loader : ({params}) => fetch(`http://localhost:5000/job/${params.id}`),
+      },
+      {
+        path: "updateJob/:id",
+        element:<UpdateJob></UpdateJob> ,
         loader : ({params}) => fetch(`http://localhost:5000/job/${params.id}`),
       },
 

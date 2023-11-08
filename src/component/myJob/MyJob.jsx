@@ -91,9 +91,7 @@ const MyJob = () => {
                                  <td>{job.deadline}</td>
                                  <td>{job.salary}</td>
                                  <td>
-                                 <button className="btn">
-                                         Update
-                                     </button>
+                                 <Link to={`/updateJob/${job._id}`}>Edit</Link>
                                  </td>
                                  <td>
                                  <button onClick={() => handleDelete(job._id)} className="btn">

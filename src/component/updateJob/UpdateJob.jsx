@@ -1,101 +1,79 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../firebase/AuthProvider';
-import DatePicker from 'react-datepicker'; // Add this import
-import 'react-datepicker/dist/react-datepicker.css'; 
+import React, { useEffect, useState } from 'react';
+import { Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import DatePicker from 'react-datepicker';
 
-const AddJob = () => {
-  
-   // console.log(user)
-  const location= useLocation();
+const UpdateJob = () => {
+    const location= useLocation();
   const navigate= useNavigate();
-  const [categories,setCategories] = useState([]);
-  const{user}= useContext(AuthContext);
+    const job = useLoaderData();
+    const  { _id,name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description,comName,comLogo } = job ;
+    const [categories,setCategories] = useState([]);
+    useEffect ( () => {
+        fetch('http://localhost:5000/category')
+        .then (res => res.json())
+        .then(data =>setCategories(data))
+        
+    },[])
+   const [deadlines, setDeadline] = useState(null);
 
-  const email =user?.email;
-  const [postDate, setPostDate] = useState(null);
-  const [deadline, setDeadline] = useState(null);
-  useEffect ( () => {
-      fetch('http://localhost:5000/category')
-      .then (res => res.json())
-      .then(data =>setCategories(data))
-      
-  },[])
-  const getCurrentDate = () => {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = currentDate.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
-
-  const handleAddJob = event => {
-    event.preventDefault();
-
-    const form = event.target;
-    const selectElement = document.getElementById("categorySelect");
+    const handleUpdateJob = event => {
+        event.preventDefault();
     
-    const name = form.name.value;
-    const category = selectElement.value;
-    const salary = form.salary.value;
-    const userName = form.userName.value;
-    const deadline = form.deadline.value;
-    const description = form.description.value;
-    const postDate = form.postDate.value;
-    const jobBanner = form.jobBanner.value;
-    const appNumber = form.appNumber.value;
-    const comName = form.comName.value;
-    const comLogo = form.comLogo.value;
-
-    const newJob = { name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description,comName,comLogo }
-
-    console.log(newJob);
-
-    fetch('http://localhost:5000/job', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(newJob)
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data);
+        const form = event.target;
+        const selectElement = document.getElementById("categorySelect");
+        
+        const name = form.name.value;
+        const category = selectElement.value;
+        const salary = form.salary.value;
+        const userName = form.userName.value;
+        const deadline = form.deadline.value;
+        const description = form.description.value;
+        const postDate = form.postDate.value;
+        const jobBanner = form.jobBanner.value;
+        const appNumber = form.appNumber.value;
+        const comName = form.comName.value;
+        const comLogo = form.comLogo.value;
     
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-            if(data.insertedId){
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Job Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  })
-            }
-            navigate(location?.state ? location.state : '/');
-      })
-}
-
+        const updateJob = { name, salary,category,userName,deadline,postDate,jobBanner,appNumber,description,comName,comLogo }
+    
+        console.log(updateJob);
+    
+        fetch(`http://localhost:5000/job/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateJob)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+        
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+                if(data.insertedId){
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Job Updated Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                      })
+                }
+                navigate(location?.state ? location.state : '/');
+          })
+    }
     return (
-      <div>
+        <div>
       <div className="bg-[#CBE4E9] p-4 lg:p-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
           <h2 className="text-2xl md:text-3xl lg:text-3xl font-extrabold">
-            Add Job
+            Update Job
           </h2>
-          <p className="text-right">
-            
-            <Link
-              to="/addCategory"
-              className="label-text-alt link link-hover text-sm md:text-lg text-orange-600"
-            >
-              Add New Category
-            </Link>
-          </p>
+          
         </div>
-        <form onSubmit={handleAddJob}>
+        <form onSubmit={handleUpdateJob}>
           <div className="md:flex mb-4 lg:mb-8">
             <div className="form-control md:w-full lg:w-1/2">
               <label className="label">
@@ -105,6 +83,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={name} 
                   placeholder="Job Title"
                   className="input input-bordered w-full"
                   required
@@ -119,6 +98,7 @@ const AddJob = () => {
                 <select
                   className="select input input-bordered w-full"
                   id="categorySelect"
+                  value={category}
                   required
                 >
                   {categories.map((category, index) => (
@@ -139,6 +119,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="salary"
+                  defaultValue={salary} 
                   placeholder="Salary Range"
                   className="input input-bordered w-full"
                   required
@@ -153,6 +134,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="description"
+                  defaultValue={description} 
                   placeholder="Description"
                   className="input input-bordered w-full"
                   required
@@ -170,7 +152,7 @@ const AddJob = () => {
                   type="text"
                   name="userName"
                   placeholder=""
-                  defaultValue={email}
+                  defaultValue={userName}
                   className="input input-bordered w-full"
                   required
                 />
@@ -184,7 +166,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="appNumber"
-                  defaultValue="0"
+                  defaultValue={appNumber}
                   placeholder=""
                   className="input input-bordered w-full"
                   required
@@ -202,7 +184,7 @@ const AddJob = () => {
                   type="text"
                   name="comName"
                   placeholder="Company Name"
-                  
+                  defaultValue={comName} 
                   className="input input-bordered w-full"
                   required
                 />
@@ -216,6 +198,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="comLogo"
+                  defaultValue={comLogo} 
                   placeholder="Company Logo"
                   className="input input-bordered w-full"
                   required
@@ -232,7 +215,7 @@ const AddJob = () => {
               <input
                 type="text"
                 name="postDate"
-                value={getCurrentDate()}
+                value={postDate}
                 className="input input-bordered w-full"
                 readOnly 
                 required
@@ -245,10 +228,11 @@ const AddJob = () => {
               </label>
               <label className="input-group">
               <DatePicker
-                selected={deadline} // Provide a date value (e.g., from state)
-                onChange={(date) => setDeadline(date)} // Handle date changes
+                selected={deadlines} 
+                onChange={(date) => setDeadline(date)} 
                 placeholderText="Select a date"
                 name="deadline"
+                value={deadline}
                 className="input input-bordered w-full"
                 required
                 />
@@ -264,6 +248,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="jobBanner"
+                  defaultValue={jobBanner} 
                   placeholder="Job Banner"
                   className="input input-bordered w-full"
                   required
@@ -271,11 +256,11 @@ const AddJob = () => {
               </label>
             </div>
           </div>
-          <input type="submit" value="Add Job" className="btn btn-block" />
+          <input type="submit" value="Update Job" className="btn btn-block" />
         </form>
       </div>
     </div>
     );
 };
 
-export default AddJob;
+export default UpdateJob;
