@@ -104,7 +104,6 @@ const AppliedJob = () => {
                     </table>
                   </div>
                     
-
                 </div>
             </div>
         </div>

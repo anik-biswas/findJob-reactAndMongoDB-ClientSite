@@ -4,16 +4,31 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const AllJob = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const [jobs,setJobs]= useState([])
+    const [jobs,setJobs]= useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     useEffect ( () => {
         fetch('http://localhost:5000/job')
         .then (res => res.json())
         .then(data =>setJobs(data))
         
     },[])
+    const filteredJobs = jobs.filter(job =>
+        job.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     console.log(jobs)
     return (
+        <div>
+        <div className=" my-4 mx-10 md:mx-20 lg:mx-24">
+        <input
+            type="text"
+            placeholder="Search by Job Title"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className="input input-bordered"
+        />
+    </div>
         <div className='overflow-x-auto justify-center items-center text-center px-5 md:px-10 lg:px-20'>
+         
             <table className="table">
                         {/* Table header */}
                         <thead>
@@ -30,7 +45,7 @@ const AllJob = () => {
                         </thead>
                         {/* Table body */}
                         <tbody>
-                            {jobs.map((job, index) => (
+                            {filteredJobs.map((job, index) => (
                                 <tr key={job._id}>
                                     <td>{index + 1}</td>
                                     <td className="text-xs">{job.name}</td>
@@ -48,6 +63,7 @@ const AllJob = () => {
                             ))}
                         </tbody>
                     </table>
+        </div>
         </div>
     );
 };
