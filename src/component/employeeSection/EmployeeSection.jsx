@@ -2,7 +2,7 @@ import React from 'react';
 
 const EmployeeSection = () => {
     return (
-        <div>
+        <div className='grid '>
             <div className='my-10'>
             <h2 className='text-xl md:text-2xl lg:text-4xl text-center text-gray-600 font-bold'>discover 1000+ inclusive employers</h2>
             <div className="grid p-10 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 justify-items-center">

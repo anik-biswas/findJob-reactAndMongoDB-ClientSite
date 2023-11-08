@@ -245,8 +245,8 @@ const AddJob = () => {
               </label>
               <label className="input-group">
               <DatePicker
-                selected={deadline} // Provide a date value (e.g., from state)
-                onChange={(date) => setDeadline(date)} // Handle date changes
+                selected={deadline} 
+                onChange={(date) => setDeadline(date)} 
                 placeholderText="Select a date"
                 name="deadline"
                 className="input input-bordered w-full"

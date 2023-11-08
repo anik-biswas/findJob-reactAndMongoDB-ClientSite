@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../firebase/AuthProvider";
-//import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const Registration = () => {
     const {signUp} = useContext(AuthContext);
@@ -52,12 +52,12 @@ const Registration = () => {
 
                 navigate(location?.state ? location.state : '/',{state: {name}});
                 // navigate('/', { state: { name } });
-                //toast.success('Register successful!'); 
+                toast.success('Register successful!'); 
                 //console.log(name,email,image,password);
             })
             .catch(error=>{
                 console.error(error);
-                //toast.error('Registration failed. Please check your credentials.');
+                toast.error('Registration failed. Please check your credentials.');
             })
         }
        

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AddCategory = () => {
     const location= useLocation();
@@ -25,12 +26,12 @@ const AddCategory = () => {
         .then(data=>{
             console.log(data);
             if(data.insertedId){
-                // Swal.fire({
-                //     title: 'Success!',
-                //     text: 'Brand Added Successfully',
-                //     icon: 'success',
-                //     confirmButtonText: 'Ok'
-                //   })
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Category Added Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                  })
             }
             navigate(location?.state ? location.state : '/');
         })

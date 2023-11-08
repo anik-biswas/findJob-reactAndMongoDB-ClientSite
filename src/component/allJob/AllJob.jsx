@@ -30,7 +30,7 @@ const AllJob = () => {
         <div className='overflow-x-auto justify-center items-center text-center px-5 md:px-10 lg:px-20'>
          
             <table className="table">
-                        {/* Table header */}
+                        
                         <thead>
                             <tr>
                                 <th></th>
@@ -43,7 +43,7 @@ const AllJob = () => {
                                 <th className="text-red-400">Action</th>
                             </tr>
                         </thead>
-                        {/* Table body */}
+                        
                         <tbody>
                             {filteredJobs.map((job, index) => (
                                 <tr key={job._id}>

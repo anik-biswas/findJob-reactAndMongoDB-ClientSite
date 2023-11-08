@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/AuthProvider';
+import { toast } from 'react-toastify';
 
 const JobDetails = () => {
     const location = useLocation();
@@ -25,9 +26,9 @@ const JobDetails = () => {
     const handleApply = () => {
         const currentDate = new Date();
         if (currentDate > new Date(deadline)) {
-            console.log("Deadline has passed. You can't apply.");
+            toast.error("Deadline has passed. You can't apply.");
         } else if (email === userName) {
-            console.log("User cannot apply to their own job.");
+            toast.error("User cannot apply to their own job.");
         } else {
             openModal();
         }
@@ -62,7 +63,7 @@ const JobDetails = () => {
         .then((data) => {
             console.log(data);
             if (data.success) {
-                
+                toast.success("job applied Successfully ");
                 closeModal();
                 updateAppNumber();
             }

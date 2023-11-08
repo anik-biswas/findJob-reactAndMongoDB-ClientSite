@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
  import { AuthContext } from "../../firebase/AuthProvider";
+import { toast } from "react-toastify";
 
 // import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css'; 
+ import 'react-toastify/dist/ReactToastify.css'; 
 
 const Login = () => {
 
@@ -19,7 +20,7 @@ const Login = () => {
         
             navigate(location?.state ? location.state : '/');
 
-           //toast.success('You Login with Google');
+           toast.success('You Login with Google');
 
         });
     };
@@ -36,11 +37,11 @@ const Login = () => {
             console.log(result.user);
             navigate(location?.state ? location.state : '/');
 
-          //  toast.success('Login successful!'); 
+            toast.success('Login successful!'); 
         })
         .catch( error=>{
             console.error(error);
-           // toast.error('Login failed. Please check your credentials.');
+            toast.error('Login failed. Please check your credentials.');
 
           //  toast.success('Login successful!'); 
         })
