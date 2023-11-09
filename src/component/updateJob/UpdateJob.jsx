@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
+import { toast } from 'react-toastify';
 
 const UpdateJob = () => {
     const location= useLocation();
@@ -53,14 +54,15 @@ const UpdateJob = () => {
         //     .then(res => res.json())
         //     .then(data => {
         //         console.log(data);
-                if(data.insertedId){
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Job Updated Successfully',
-                        icon: 'success',
-                        confirmButtonText: 'Ok'
-                      })
-                }
+                // if(data.success){
+                //     Swal.fire({
+                //         title: 'Success!',
+                //         text: 'Job Updated Successfully',
+                //         icon: 'success',
+                //         confirmButtonText: 'Ok'
+                //       })
+                // }
+                toast.success("Job data Updated Successfully");
                 navigate(location?.state ? location.state : '/');
           })
     }
