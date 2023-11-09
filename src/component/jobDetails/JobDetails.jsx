@@ -2,7 +2,9 @@ import React, { useContext, useRef, useState, useEffect } from 'react';
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/AuthProvider';
 import { toast } from 'react-toastify';
-
+import emailjs from 'emailjs-com';
+import { sendEmail } from './emailService';
+emailjs.init("0b14yTqYGVMJiX1rU");
 const JobDetails = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -63,6 +65,18 @@ const JobDetails = () => {
         .then((data) => {
             console.log(data);
             if (data.success) {
+
+                emailjs.send('service_0aq9g16', 'template_7r8svul', {
+                    to_email: email,
+                    user_name: uName,
+                    job_name: name,
+                    job_salary: salary,
+                    job_category: category,
+                }).then((response) => {
+                    toast.success('Email sent:', response);
+                }).catch((error) => {
+                    toast.error('Email send error:', error);
+                });
                 toast.success("job applied Successfully ");
                 closeModal();
                 updateAppNumber();

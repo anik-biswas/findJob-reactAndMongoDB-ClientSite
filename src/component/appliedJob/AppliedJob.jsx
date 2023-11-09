@@ -1,7 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../firebase/AuthProvider';
 import Swal from 'sweetalert2';
+import ReactToPdf from 'react-to-pdf';
+import { saveAs } from 'file-saver';
 
 const AppliedJob = () => {
     const location = useLocation();
@@ -11,7 +13,13 @@ const AppliedJob = () => {
     const [categories, setCategories] = useState([]);
     const [applies, setApplies] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All'); // Initialize with 'All' as the default category
-
+    
+    const pdfRef = useRef();
+    const pdfOptions = {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait',
+    };
     useEffect(() => {
         fetch('https://job-server-topaz.vercel.app/category')
             .then(res => res.json())
@@ -23,6 +31,17 @@ const AppliedJob = () => {
             return apply.userName === email && (category === 'All' || apply.category === category);
         });
     };
+    // const generatePdf = () => {
+    //     const pdfOptions = {
+    //       unit: 'mm',
+    //       format: 'a4',
+    //       orientation: 'portrait',
+    //     };
+      
+    //     const pdfContent = pdfRef.current;
+      
+    //    // ReactToPdf.generatePdf(pdfContent, pdfOptions);
+    //   };
 
     const [filterDelete, setFilterAfterDelete] = useState([]);
 
@@ -77,6 +96,7 @@ const AppliedJob = () => {
             }
         });
     };
+   
 
     return (
         <div>
@@ -139,6 +159,7 @@ const AppliedJob = () => {
 
                 </div>
             </div>
+            
         </div>
     );
 };
