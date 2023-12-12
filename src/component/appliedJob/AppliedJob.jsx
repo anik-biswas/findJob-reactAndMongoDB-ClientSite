@@ -97,7 +97,6 @@ const AppliedJob = () => {
         });
     };
    
-
     return (
         <div>
             <div>

@@ -25,8 +25,8 @@ const AllJob = () => {
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             className="input input-bordered"
-        />
-    </div>
+         />
+        </div>
         <div className='overflow-x-auto justify-center items-center text-center px-5 md:px-10 lg:px-20'>
          
             <table className="table">

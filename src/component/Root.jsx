@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Root = () => {
     return (
-        <div className='p-2 md:p-4 lg:p-6 bg-[#e7f8f6] '>
+        <div className='p-2 md:p-4 lg:p-6 bg-gradient-to-b from-[#e5efed] to-[#9db1b0]  '>
            <Navbar></Navbar>
            <ToastContainer />
            <Outlet></Outlet>
